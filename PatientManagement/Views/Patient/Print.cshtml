@@ -1,0 +1,63 @@
+﻿@model PatientManagement.Models.spGetPatientById_Result
+
+@{
+    ViewBag.Title = "Print";
+}
+<link href="~/Content/cardprint.css" rel="stylesheet" />
+
+    <body>
+       <br />
+        <br />
+        <div class="container">
+            <div class="row" id="dvContents">
+                <div class="col-md-4 col-md-offset-4 col-xs-3 col-xs-offset-2">
+                    <div class="card">
+                        <div class="text-xenter">
+                            <div class="pp">
+                                <h4 class="companyname">Patient Details</h4>
+                                @if (Model.PatImage != null)
+                                {
+                                    var base64 = Convert.ToBase64String(Model.PatImage);
+                                    var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                                    <img class="profile-img" src="@imgsrc" alt="">
+
+                                }
+                            </div>
+                            <div class="names">
+                                <h2 class="profile-name">@Model.PatName</h2>
+
+                                <h4 class="dt"><b>D.O.B    :</b>18 july 1997</h4>
+                                <h4 class="dt1"><b>Contact :</b>@Model.PatContact</h4>
+                                <h4 class="dt2"><b>Address :</b>Kathmandu</h4>
+                                <h4 class="dt3"><b>Date    :</b>@Model.EntryDate.ToShortDateString()</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="col-md-2 col-md-offset-4 col-xs-2 col-xs-offset-4">
+                <button class="btn btn-primary pull-right" onclick="printpage();" value="Print">Print<span><i class="bi bi-printer"></i></span></button>
+            </div>
+        </div>
+    </body>
+
+
+    <script type="text/javascript">
+       
+        function printpage() {
+            var getpanel = document.getElementById("dvContents");
+            var MainWindow = window.open('', '', 'height=500,width=800');
+            MainWindow.document.write('<html><head><title></title>');
+            MainWindow.document.write("<link rel=\"stylesheet\" href=\"./Content/cardprint.css\" type=\"text/css\"/>");
+            MainWindow.document.write('</head><body onload="window.print();window.close()">');
+            MainWindow.document.write(getpanel.innerHTML);
+            MainWindow.document.write('</body></html>');
+            MainWindow.document.close();
+            setTimeout(function () {
+                MainWindow.print();
+            }, 500)
+            return false;
+        }
+     
+    </script>

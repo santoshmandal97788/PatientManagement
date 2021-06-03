@@ -1,0 +1,124 @@
+﻿
+
+ 
+
+* {
+    box-sizing: border-box;
+}
+
+/*.container {
+        position: absolute;
+        left: 25%;
+        top: 20%;
+    }*/
+
+.card {
+    height: 3.375in;
+    width: 2.275in;
+    padding: 1.3rem 0 1.3rem 0;
+    box-shadow: 0 0 5px #b4b4b4;
+    background-image: url('../../Content/img/bgecard.jpg');
+    background-repeat: no-repeat;
+    background-size: 218.4px 324px;
+    border-radius: 20px;
+}
+
+.companyname {
+    position: absolute;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 1.09rem;
+    margin-top: .5rem;
+    top: 7.3%;
+    left: 13%;
+    color: oldlace;
+}
+
+.company-img {
+    position: absolute;
+    top: 15%;
+    left: 28%;
+    max-width: 96px;
+}
+
+.profile-img {
+    position: absolute;
+    top: 15%;
+    left: 17%;
+    width: 114px;
+    height: 115px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, .2);
+}
+
+.profile-name {
+    position: absolute;
+    top: 50%;
+    left: 23%;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    margin-top: .5rem;
+    color: darkblue;
+}
+
+.profile-username {
+    position: absolute;
+    top: 78%;
+    font-weight: bold;
+    text-transform: lowercase;
+    font-size: 1rem;
+    margin-top: .5rem;
+    text-align: center;
+    color: #0c2c73;
+}
+
+.squre-qr {
+    position: absolute;
+    align-items: center;
+    top: 20%;
+    left: 30%;
+    height: 80px;
+    width: 80px;
+    box-shadow: 0 0 100px #b4b4b4;
+}
+
+.dt {
+    top: 62%;
+    position: absolute;
+    font-weight: bold;
+    font-size: 1.0rem;
+    margin-top: .5rem;
+    color: darkblue;
+    left: 8%;
+}
+
+.dt1 {
+    top: 68%;
+    position: absolute;
+    font-weight: bold;
+    font-size: 1.0rem;
+    margin-top: .5rem;
+    color: darkblue;
+    left: 8%;
+}
+
+.dt2 {
+    top: 75%;
+    position: absolute;
+    font-weight: bold;
+    font-size: 1.0rem;
+    margin-top: .5rem;
+    color: darkblue;
+    left: 8%;
+}
+
+.dt3 {
+    top: 82%;
+    position: absolute;
+    font-weight: bold;
+    font-size: 1.0rem;
+    margin-top: .5rem;
+    color: darkblue;
+    left: 8%;
+}

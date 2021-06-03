@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HospitalDBModelStoreContainer" CdmEntityContainer="HospitalDBEntities">
+    <EntitySetMapping Name="tblPatients">
+      <EntityTypeMapping TypeName="HospitalDBModel.tblPatient">
+        <MappingFragment StoreEntitySet="tblPatient">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PatImage" ColumnName="PatImage" />
+          <ScalarProperty Name="PatName" ColumnName="PatName" />
+          <ScalarProperty Name="PatContact" ColumnName="PatContact" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spCreatePatient" FunctionName="HospitalDBModel.Store.spCreatePatient" />
+    <FunctionImportMapping FunctionImportName="spDeletePatient" FunctionName="HospitalDBModel.Store.spDeletePatient" />
+    <FunctionImportMapping FunctionImportName="spGetAllPatient" FunctionName="HospitalDBModel.Store.spGetAllPatient">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HospitalDBModel.spGetAllPatient_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PatImage" ColumnName="PatImage" />
+          <ScalarProperty Name="PatName" ColumnName="PatName" />
+          <ScalarProperty Name="PatContact" ColumnName="PatContact" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetPatientById" FunctionName="HospitalDBModel.Store.spGetPatientById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HospitalDBModel.spGetPatientById_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PatImage" ColumnName="PatImage" />
+          <ScalarProperty Name="PatName" ColumnName="PatName" />
+          <ScalarProperty Name="PatContact" ColumnName="PatContact" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spUpdatePatient" FunctionName="HospitalDBModel.Store.spUpdatePatient" />
+  </EntityContainerMapping>
+</Mapping>

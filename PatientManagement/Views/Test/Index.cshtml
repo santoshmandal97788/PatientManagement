@@ -1,0 +1,221 @@
+﻿@model PatientManagement.Models.ViewModel.PatientViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>PatientViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.PatName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PatName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PatName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PatName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+            <div class="contentarea">
+                <h1>
+                    Using Javascript to capture Photo
+                </h1>
+                <div><button id="Capture" class="btn btn-primary" onclick="Open();" >Capture Image</button></div>
+                <div class="camera">
+                    <video id="video">Video stream not available.</video>
+                </div>
+                <div><button id="startbutton">Take photo</button></div>
+
+                <canvas id="canvas"></canvas>
+                <div class="output">
+                    <img id="photo" alt="The screen capture will appear in this box.">
+                </div>
+            </div>
+        </div>
+
+          
+
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PatContact, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PatContact, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PatContact, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsActive)
+                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EntryDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EntryDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EntryDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section Scripts
+    {
+
+    <script>
+        function Open() {
+            var video = document.querySelector("#video");
+
+            if (navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function (stream) {
+                        video.srcObject = stream;
+                    })
+                    .catch(function (err0r) {
+                        console.log("Something went wrong!");
+                    });
+            }
+        }
+        function doGetUserMedia() {
+            // Grab elements, create settings, etc.
+            var canvas = document.getElementById("canvas"),
+                context = canvas.getContext("2d"),
+                video = document.getElementById("video"),
+                videoObj = { "video": true },
+                errBack = function (error) {
+                    console.log("Video capture error: ", error.code);
+                };
+
+            // Put video listeners into place
+            if (navigator.getUserMedia) { // Standard
+                navigator.getUserMedia(videoObj, function (stream) {
+                    video.src = stream;
+                    video.play();
+                }, errBack);
+            } else if (navigator.webkitGetUserMedia) { // WebKit-prefixed
+                navigator.webkitGetUserMedia(videoObj, function (stream) {
+                    video.src = window.webkitURL.createObjectURL(stream);
+                    video.play();
+                }, errBack);
+            }
+
+            // Trigger photo take
+            document.getElementById("snap").addEventListener("click", function () {
+                context.drawImage(video, 0, 0, 487, 365);
+            });
+        }
+
+
+
+
+    /* JS comes here */
+    //(function() {
+
+    //    var width = 320; // We will scale the photo width to this
+    //    var height = 0; // This will be computed based on the input stream
+
+    //    var streaming = false;
+
+    //    var video = null;
+    //    var canvas = null;
+    //    var photo = null;
+    //    var startbutton = null;
+
+    //    function OpenWebCam() {
+    //        video = document.getElementById('video');
+    //        canvas = document.getElementById('canvas');
+    //        photo = document.getElementById('photo');
+    //        startbutton = document.getElementById('startbutton');
+
+    //        navigator.mediaDevices.getUserMedia({
+    //                video: true,
+    //                audio: false
+    //            })
+    //            .then(function(stream) {
+    //                video.srcObject = stream;
+    //                video.play();
+    //            })
+    //            .catch(function(err) {
+    //                console.log("An error occurred: " + err);
+    //            });
+
+    //        video.addEventListener('canplay', function(ev) {
+    //            if (!streaming) {
+    //                height = video.videoHeight / (video.videoWidth / width);
+
+    //                if (isNaN(height)) {
+    //                    height = width / (4 / 3);
+    //                }
+
+    //                video.setAttribute('width', width);
+    //                video.setAttribute('height', height);
+    //                canvas.setAttribute('width', width);
+    //                canvas.setAttribute('height', height);
+    //                streaming = true;
+    //            }
+    //        }, false);
+
+    //        startbutton.addEventListener('click', function(ev) {
+    //            takepicture();
+    //            ev.preventDefault();
+    //        }, false);
+
+    //        clearphoto();
+    //    }
+
+
+    //    function clearphoto() {
+    //        var context = canvas.getContext('2d');
+    //        context.fillStyle = "#AAA";
+    //        context.fillRect(0, 0, canvas.width, canvas.height);
+
+    //        var data = canvas.toDataURL('image/png');
+    //        photo.setAttribute('src', data);
+    //    }
+
+    //    function takepicture() {
+    //        var context = canvas.getContext('2d');
+    //        if (width && height) {
+    //            canvas.width = width;
+    //            canvas.height = height;
+    //            context.drawImage(video, 0, 0, width, height);
+
+    //            var data = canvas.toDataURL('image/png');
+    //            photo.setAttribute('src', data);
+    //        } else {
+    //            clearphoto();
+    //        }
+    //    }
+
+    //    window.addEventListener('load', startup, false);
+    //})();
+    </script>
+
+
+
+}
